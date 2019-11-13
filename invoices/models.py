@@ -7,7 +7,9 @@ class Client(models.Model):
     company_name = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)
     email = models.CharField(max_length=50)
-
+    
+    def __str__(self):
+        return f'{self.email}'
 
 class Invoice_Item(models.Model):
     item_description = models.CharField(max_length=200, unique=True)
@@ -30,11 +32,10 @@ class Invoice(models.Model):
     terms = models.CharField(max_length=500, blank=True)
     is_paid = models.BooleanField(default=False)
     currency = models.CharField(max_length=50, default='GBP')
-    invoice_items = models.ForeignKey(
+    invoice_items = models.ManyToManyField(
         Invoice_Item,
         related_name='invoice',
-        on_delete=models.DO_NOTHING,
-        null=True
+        blank=True
     )
     client = models.ForeignKey(
         Client,
@@ -45,40 +46,3 @@ class Invoice(models.Model):
 
     def __str__(self):
         return f'{self.invoice_number}'
-
-
-
-
-# class Line(models.Model):
-#     name = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return f'{self.name}'
-
-# # The thing you are referencing should be created first so Station references Zone so Zone sits above Station
-# class Zone(models.Model):
-#     zone = models.IntegerField()
-
-#     def __str__(self):
-#         return f'{self.zone}'
-
-# # Create your models here.
-# class Station(models.Model):
-#     name = models.CharField(max_length=50, unique=True)
-#     lat = models.FloatField()
-#     lon = models.FloatField()
-#     is_night_tube = models.BooleanField(default=False)
-#     zone = models.ForeignKey(
-#         Zone,
-#         related_name='stations',
-#         on_delete=models.DO_NOTHING,
-#         null=True
-#     )#prepares the flip relationship so that they can refencence each other.
-#     lines = models.ManyToManyField(
-#         Line,
-#         related_name='stations',
-#         blank=True
-#     )
-
-#     def __str__(self):
-#         return f'{self.name}'
