@@ -7,12 +7,12 @@ class Client(models.Model):
     company_name = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)
     email = models.CharField(max_length=50)
-    
+
     def __str__(self):
         return f'{self.email}'
 
 class Invoice_Item(models.Model):
-    item_description = models.CharField(max_length=200, unique=True)
+    item_description = models.CharField(max_length=200)
     quantity_hrs = models.FloatField(null=True, default=0)
     unit_price_hrs = models.FloatField(null=True, default=0)
     total = MoneyField(max_digits=10, decimal_places=2, null=True, default_currency='GBP')
@@ -39,7 +39,7 @@ class Invoice(models.Model):
     )
     client = models.ForeignKey(
         Client,
-        related_name='invoice',
+        related_name='invoices',
         on_delete=models.DO_NOTHING,
         null=True
     )
