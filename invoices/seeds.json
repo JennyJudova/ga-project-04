@@ -1,0 +1,279 @@
+[
+{
+  "model": "invoices.client",
+  "pk": 1,
+  "fields": {
+    "full_name": "Bruce Wayne",
+    "company_name": "BatMan llc",
+    "address": "Gotham",
+    "email": "BWayne@BatCave.io"
+  }
+},
+{
+  "model": "invoices.client",
+  "pk": 2,
+  "fields": {
+    "full_name": "Diana Prince",
+    "company_name": "Wonder Woman inc",
+    "address": "Themyscira",
+    "email": "DianaPrince@WonderWoman.gr"
+  }
+},
+{
+  "model": "invoices.client",
+  "pk": 3,
+  "fields": {
+    "full_name": "Shuri",
+    "company_name": "Black Panther labs",
+    "address": "Wakanda",
+    "email": "Shuri@Wakanda.org"
+  }
+},
+{
+  "model": "invoices.client",
+  "pk": 4,
+  "fields": {
+    "full_name": "Samuel Thomas Wilson",
+    "company_name": "Falcon",
+    "address": "Washington DC",
+    "email": "SamWilson@Avengers.com"
+  }
+},
+{
+  "model": "invoices.client",
+  "pk": 5,
+  "fields": {
+    "full_name": "Nico Minoru",
+    "company_name": "Runaways",
+    "address": "",
+    "email": "Nico@Runaways.com"
+  }
+},
+{
+  "model": "invoices.client",
+  "pk": 6,
+  "fields": {
+    "full_name": "Doctor Victor Von Doom",
+    "company_name": "",
+    "address": "Latveria",
+    "email": "Doom@Latveria.lv"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 1,
+  "fields": {
+    "item_description": "Staff of One annual maintenance",
+    "quantity_hrs": 5.0,
+    "unit_price_hrs": 80.0,
+    "total_currency": "GBP",
+    "total": "400.00"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 2,
+  "fields": {
+    "item_description": "Lasso Throwing 1 on 1 tutoring",
+    "quantity_hrs": 10.0,
+    "unit_price_hrs": 200.0,
+    "total_currency": "GBP",
+    "total": "2000.00"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 3,
+  "fields": {
+    "item_description": "'How to be a baddie' workshop delivery",
+    "quantity_hrs": 1.0,
+    "unit_price_hrs": 500.0,
+    "total_currency": "GBP",
+    "total": "500.00"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 4,
+  "fields": {
+    "item_description": "'Dealing with your inner baddie' therapy session",
+    "quantity_hrs": 2.0,
+    "unit_price_hrs": 125.0,
+    "total_currency": "GBP",
+    "total": "250.00"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 5,
+  "fields": {
+    "item_description": "'How to run a country' workshop",
+    "quantity_hrs": 1.0,
+    "unit_price_hrs": 250.0,
+    "total_currency": "GBP",
+    "total": "250.00"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 6,
+  "fields": {
+    "item_description": "Monthly Wing Maintenance",
+    "quantity_hrs": 3.0,
+    "unit_price_hrs": 150.0,
+    "total_currency": "GBP",
+    "total": "450.00"
+  }
+},
+{
+  "model": "invoices.invoice_item",
+  "pk": 7,
+  "fields": {
+    "item_description": "Emergency Cave Clean-Up",
+    "quantity_hrs": 1.0,
+    "unit_price_hrs": 10000.0,
+    "total_currency": "GBP",
+    "total": "10000.00"
+  }
+},
+{
+  "model": "invoices.invoice",
+  "pk": 1,
+  "fields": {
+    "invoice_number": "Cap#117",
+    "issue_date": "2019-11-13",
+    "due_date": "2019-11-28",
+    "vat_registered": false,
+    "subtotal_currency": "GBP",
+    "subtotal": "450.00",
+    "vat": 0.0,
+    "total_currency": "GBP",
+    "total": "450.00",
+    "notes": "",
+    "terms": "",
+    "is_paid": false,
+    "currency": "GBP",
+    "client": 4,
+    "invoice_items": [
+      6
+    ]
+  }
+},
+{
+  "model": "invoices.invoice",
+  "pk": 2,
+  "fields": {
+    "invoice_number": "BlackPanther#2 vol4",
+    "issue_date": "2019-11-13",
+    "due_date": "2019-11-30",
+    "vat_registered": true,
+    "subtotal_currency": "GBP",
+    "subtotal": "250.00",
+    "vat": 20.0,
+    "total_currency": "GBP",
+    "total": "300.00",
+    "notes": "",
+    "terms": "",
+    "is_paid": true,
+    "currency": "GBP",
+    "client": 3,
+    "invoice_items": [
+      5
+    ]
+  }
+},
+{
+  "model": "invoices.invoice",
+  "pk": 3,
+  "fields": {
+    "invoice_number": "Fantastic4#5",
+    "issue_date": "2019-11-13",
+    "due_date": "2019-12-31",
+    "vat_registered": true,
+    "subtotal_currency": "GBP",
+    "subtotal": "1000.00",
+    "vat": 20.0,
+    "total_currency": "GBP",
+    "total": "1200.00",
+    "notes": "",
+    "terms": "",
+    "is_paid": false,
+    "currency": "GBP",
+    "client": 6,
+    "invoice_items": [
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "invoices.invoice",
+  "pk": 4,
+  "fields": {
+    "invoice_number": "DC#27",
+    "issue_date": "2019-11-13",
+    "due_date": "2019-12-09",
+    "vat_registered": false,
+    "subtotal_currency": "GBP",
+    "subtotal": "10000.00",
+    "vat": 0.0,
+    "total_currency": "GBP",
+    "total": "10000.00",
+    "notes": "Charging double next time.",
+    "terms": "",
+    "is_paid": false,
+    "currency": "GBP",
+    "client": 1,
+    "invoice_items": [
+      7
+    ]
+  }
+},
+{
+  "model": "invoices.invoice",
+  "pk": 5,
+  "fields": {
+    "invoice_number": "Runaways#1",
+    "issue_date": "2019-11-13",
+    "due_date": "2019-11-24",
+    "vat_registered": true,
+    "subtotal_currency": "GBP",
+    "subtotal": "400.00",
+    "vat": 10.0,
+    "total_currency": "GBP",
+    "total": "440.00",
+    "notes": "Regular client",
+    "terms": "",
+    "is_paid": true,
+    "currency": "GBP",
+    "client": 5,
+    "invoice_items": [
+      1
+    ]
+  }
+},
+{
+  "model": "invoices.invoice",
+  "pk": 6,
+  "fields": {
+    "invoice_number": "AllStar#8",
+    "issue_date": "2019-11-13",
+    "due_date": "2019-12-10",
+    "vat_registered": false,
+    "subtotal_currency": "GBP",
+    "subtotal": "2000.00",
+    "vat": 0.0,
+    "total_currency": "GBP",
+    "total": "2000.00",
+    "notes": "",
+    "terms": "",
+    "is_paid": false,
+    "currency": "GBP",
+    "client": 2,
+    "invoice_items": [
+      2
+    ]
+  }
+}
+]
