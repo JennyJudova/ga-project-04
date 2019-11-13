@@ -10,6 +10,9 @@ django = "*"
 psycopg2-binary = "*"
 djangorestframework = "*"
 django-money = "*"
+pyjwt = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "859f12d904b6048672282ad0554d10d95148cea4102d586a04876240945c8312"
+            "sha256": "995606cb937ec3211c296d0bddcf9a00c8fed06dd6d1e9d0d7d30fdaf727252b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "babel": {
+            "hashes": [
+                "sha256:af92e6106cb7c55286b25b38ad7695f8b4efb36a90ba483d7f7a6628c46158ab",
+                "sha256:e86135ae101e31e2c8ec20a4e0c5220f4eed12487d5cf3f78be7e98d3a57fc28"
+            ],
+            "version": "==2.7.0"
+        },
         "django": {
             "hashes": [
                 "sha256:16040e1288c6c9f68c6da2fe75ebde83c0a158f6f5d54f4c5177b0c1478c5b86",
@@ -32,6 +39,14 @@
             "index": "pypi",
             "version": "==1.0"
         },
+        "django-phonenumber-field": {
+            "hashes": [
+                "sha256:1ab19f723928582fed412bd9844221fa4ff466276d8526b8b4a9913ee1487c5e",
+                "sha256:794ebbc3068a7af75aa72a80cb0cec67e714ff8409a965968040f1fd210b2d97"
+            ],
+            "index": "pypi",
+            "version": "==3.0.1"
+        },
         "djangorestframework": {
             "hashes": [
                 "sha256:5488aed8f8df5ec1d70f04b2114abc52ae6729748a176c453313834a9ee179c8",
@@ -39,6 +54,14 @@
             ],
             "index": "pypi",
             "version": "==3.10.3"
+        },
+        "phonenumbers": {
+            "hashes": [
+                "sha256:2430c95b35e330efe3483021955ed98d0c245bd07cdaff41fff4cc3630350de9",
+                "sha256:705dc7bbaa0d5932e9c010437c718bb3c0d7c93ab25b9710b4d9ae7370cc0121"
+            ],
+            "index": "pypi",
+            "version": "==8.10.22"
         },
         "psycopg2-binary": {
             "hashes": [
@@ -84,6 +107,14 @@
                 "sha256:ec73795171919d537880a33c44d07fcdf0a5225e8368684fe02f0e75a6404742"
             ],
             "version": "==0.8.0"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e",
+                "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"
+            ],
+            "index": "pypi",
+            "version": "==1.7.1"
         },
         "pytz": {
             "hashes": [
