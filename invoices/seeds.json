@@ -154,6 +154,7 @@
     "is_paid": false,
     "currency": "GBP",
     "client": 4,
+    "creator": 2,
     "invoice_items": [
       6
     ]
@@ -177,6 +178,7 @@
     "is_paid": true,
     "currency": "GBP",
     "client": 3,
+    "creator": 2,
     "invoice_items": [
       5
     ]
@@ -200,6 +202,7 @@
     "is_paid": false,
     "currency": "GBP",
     "client": 6,
+    "creator": 2,
     "invoice_items": [
       3,
       4,
@@ -225,6 +228,7 @@
     "is_paid": false,
     "currency": "GBP",
     "client": 1,
+    "creator": 2,
     "invoice_items": [
       7
     ]
@@ -248,6 +252,7 @@
     "is_paid": true,
     "currency": "GBP",
     "client": 5,
+    "creator": 2,
     "invoice_items": [
       1
     ]
@@ -271,6 +276,7 @@
     "is_paid": false,
     "currency": "GBP",
     "client": 2,
+    "creator": 2,
     "invoice_items": [
       2
     ]

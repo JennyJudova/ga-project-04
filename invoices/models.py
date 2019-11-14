@@ -1,6 +1,9 @@
 from datetime import date
 from djmoney.models.fields import MoneyField
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Client(models.Model):
     full_name = models.CharField(max_length=50, blank=True)
@@ -42,6 +45,11 @@ class Invoice(models.Model):
         related_name='invoices',
         on_delete=models.DO_NOTHING,
         null=True
+    )
+    creator = models.ForeignKey(
+        User,
+        related_name='invoices',
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

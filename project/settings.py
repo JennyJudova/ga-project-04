@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'invoices',
     'djmoney',
     'jwt_auth',
-    'phonenumber_field'
+    'phonenumber_field',
+    'frontend'
 ]
 
 MIDDLEWARE = [
