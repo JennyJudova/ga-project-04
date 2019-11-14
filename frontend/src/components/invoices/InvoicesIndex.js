@@ -12,8 +12,8 @@ class InvoicesIndex extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('api/invoices')
-      .then(res => console.log(res))
+    axios.get('/api/invoices')
+      .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }
 
