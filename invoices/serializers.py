@@ -3,14 +3,14 @@
 from rest_framework import serializers
 from .models import Invoice, Invoice_Item, Client
 # from jwt_auth.serializers import NestedUserSerializer
-# from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 
-# User = get_user_model()
+User = get_user_model()
 
-# class NestedUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
+class NestedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
 
 class NestedInvoiceSerializer(serializers.ModelSerializer):
 
@@ -56,7 +56,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
     invoice_items = NestedInvoice_ItemSerializer(many=True)
     client = NestedClientSerializer()
-    # creator = NestedUserSerializer(many=True)
+    creator = NestedUserSerializer()
 
     def create(self, data):
         invoice_items_data = data.pop('invoice_items')
