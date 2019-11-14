@@ -61,9 +61,11 @@ class InvoiceSerializer(serializers.ModelSerializer):
     def create(self, data):
         invoice_items_data = data.pop('invoice_items')
         client_data = data.pop('client')
+        creator_data = data.pop('creator')
 
         invoice = Invoice(**data)
-        invoice.client = Client.objects. get(**client_data)
+        invoice.client = Client.objects.get(**client_data)
+        invoice.creator = User.objects.get(**creator_data)
         invoice_items = [Invoice_Item.objects.get(**invoice_item_data) for invoice_item_data in invoice_items_data]
 
         invoice.save()
