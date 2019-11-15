@@ -45,7 +45,7 @@ class InvoiceItemNew extends React.Component {
     console.log(this.state.data)
     return (
       <div className='invoiceItemWrapper'>
-        <form onSubmit={this.handleSubmit}>
+        <div className='invoiceItemForm' onSubmit={this.handleSubmit}>
           <div>
             <label>Item Description<span>*</span></label>
             <textarea
@@ -83,9 +83,9 @@ class InvoiceItemNew extends React.Component {
                 value={total}
               />
             </div>
-            <button type='submit'>Add Item to my invoice</button>
+            <button type='submit' onClick={this.handleSubmit}>Add Item to my invoice</button>
           </div>
-        </form>
+        </div>
       </div>
     )
   }

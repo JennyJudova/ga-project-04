@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-import './invoiceItemNew'
-import InvoiceItemNew from './invoiceItemNew'
+import InvoiceItemNew from './InvoiceItemNew'
+import ClientNew from './ClientNew'
+
 
 class InvoiceNew extends React.Component {
   constructor() {
@@ -51,6 +52,7 @@ class InvoiceNew extends React.Component {
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
         <form>
+          <ClientNew/>
           <div className='invoiceNumber'>
             <label>Invoice Number<span>*</span></label>
             <textarea
