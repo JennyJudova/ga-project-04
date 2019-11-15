@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 #import django.contrib.auth.password_validation as validations
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
-from invoices.serializers import NestedInvoiceSerializer
+from invoices.serializers import InvoiceSerializer
 
 User = get_user_model()
 
@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
-    invoices = NestedInvoiceSerializer(many=True)
+    invoices = InvoiceSerializer(many=True)
 
     def validate(self, data):
 

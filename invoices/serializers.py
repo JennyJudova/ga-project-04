@@ -12,12 +12,6 @@ class NestedUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
 
-class NestedInvoiceSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Invoice
-        fields = ('id', 'invoice_number', 'issue_date', 'due_date', 'vat_registered', 'subtotal', 'vat', 'total', 'notes', 'terms', 'is_paid', 'currency')
-
 
 class NestedClientSerializer(serializers.ModelSerializer):
 
@@ -31,6 +25,14 @@ class NestedInvoice_ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice_Item
         fields = ('id', 'item_description', 'quantity_hrs', 'unit_price_hrs', 'total')
+
+
+class NestedInvoiceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Invoice
+        fields = ('id', 'invoice_number', 'issue_date', 'due_date', 'vat_registered', 'subtotal', 'vat', 'total', 'notes', 'terms', 'is_paid', 'currency', 'invoice_items')
+
 
 
 

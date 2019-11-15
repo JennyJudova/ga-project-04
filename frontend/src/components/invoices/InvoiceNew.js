@@ -128,4 +128,3 @@ class InvoiceNew extends React.Component {
 }
 
 export default InvoiceNew
-
