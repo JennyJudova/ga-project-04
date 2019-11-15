@@ -2,6 +2,7 @@ console.log('hello world')
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import './styles/style.scss'
 
 import InvoicesIndex from './components/invoices/InvoicesIndex'
 import UserProfile from './components/users/UserProfile'

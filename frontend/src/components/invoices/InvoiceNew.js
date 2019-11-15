@@ -45,71 +45,82 @@ class InvoiceNew extends React.Component {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms } = this.state.data
     console.log(this.state.data)
     return (
-      <div>
+      <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
         <form>
-          <label>Invoice Number<span>*</span></label>
-          <textarea
-            placeholder='invoice_number'
-            name='invoice_number'
-            onChange={(e) => this.handleChange(e)}
-            value={invoice_number}
-          />
-          <br/>
-          <label>issue_date<span>*</span></label>
-          <textarea
-            placeholder='2019-11-21'
-            name='issue_date'
-            onChange={(e) => this.handleChange(e)}
-            value={issue_date}
-          />
-          <label>due_date</label>
-          <textarea
-            placeholder='2019-11-21'
-            name='due_date'
-            onChange={(e) => this.handleChange(e)}
-            value={due_date}
-          />
-          <br/>
-          <label>subtotal</label>
-          <textarea
-            placeholder='0'
-            name='subtotal'
-            onChange={(e) => this.handleChange(e)}
-            value={subtotal}
-          />
-          <br/>
-          <label>vat</label>
-          <textarea
-            placeholder='0'
-            name='vat'
-            onChange={(e) => this.handleChange(e)}
-            value={vat}
-          />
-          <br/>
-          <label>total</label>
-          <textarea
-            placeholder='0'
-            name='total'
-            onChange={(e) => this.handleChange(e)}
-            value={total}
-          />
-          <br/>
-          <label>notes</label>
-          <textarea
-            placeholder='notes'
-            name='notes'
-            onChange={(e) => this.handleChange(e)}
-            value={notes}
-          />
-          <br/>
-          <label>terms</label>
-          <textarea
-            placeholder='terms'
-            name='terms'
-            onChange={(e) => this.handleChange(e)}
-            value={terms}
-          />
+          <div className='invoiceNumber'>
+            <label>Invoice Number<span>*</span></label>
+            <textarea
+              placeholder='invoice_number'
+              name='invoice_number'
+              onChange={(e) => this.handleChange(e)}
+              value={invoice_number}
+            />
+          </div>
+          <div className='invoiceDate'>
+            <label>issue_date<span>*</span></label>
+            <textarea
+              placeholder='2019-11-21'
+              name='issue_date'
+              onChange={(e) => this.handleChange(e)}
+              value={issue_date}
+            />
+            <label>due_date</label>
+            <textarea
+              placeholder='2019-11-21'
+              name='due_date'
+              onChange={(e) => this.handleChange(e)}
+              value={due_date}
+            />
+          </div>
+          <div className='invoiceSummary'>
+            <h3>Invoice Summary</h3>
+            <div>
+              <label>subtotal</label>
+              <textarea
+                placeholder='0'
+                name='subtotal'
+                onChange={(e) => this.handleChange(e)}
+                value={subtotal}
+              />
+            </div>
+            <div>
+              <label>vat</label>
+              <textarea
+                placeholder='0'
+                name='vat'
+                onChange={(e) => this.handleChange(e)}
+                value={vat}
+              />
+            </div>
+            <div>
+              <label>total</label>
+              <textarea
+                placeholder='0'
+                name='total'
+                onChange={(e) => this.handleChange(e)}
+                value={total}
+              />
+            </div>
+          </div>
+          <div className='notes'>
+            <label>notes</label>
+            <textarea
+              placeholder='notes'
+              name='notes'
+              onChange={(e) => this.handleChange(e)}
+              value={notes}
+            />
+          </div>
+          <div className='notes'>
+            <label>terms</label>
+            <textarea
+              placeholder='terms'
+              name='terms'
+              onChange={(e) => this.handleChange(e)}
+              value={terms}
+            />
+          </div>
         </form>
       </div>
     )

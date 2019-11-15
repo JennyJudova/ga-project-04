@@ -49,7 +49,7 @@ class Invoice(models.Model):
     creator = models.ForeignKey(
         User,
         related_name='invoices',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         null=True
     )
 
