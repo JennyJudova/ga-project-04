@@ -32,11 +32,16 @@ class InvoiceNew extends React.Component {
         notes: '', //models.CharField(max_length=500, blank=True)
         terms: '', //models.CharField(max_length=500, blank=True)
         is_paid: false, //models.BooleanField(default=False)
-        currency: 'GBP' //models.CharField(max_length=50, default='GBP')
+        currency: 'GBP', //models.CharField(max_length=50, default='GBP')
+        invoice_items: [],
+        client: {
+          email: 'SamWilson@Avengers.com'
+        }
       }, 
       errors: {}
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(e) {
@@ -45,13 +50,23 @@ class InvoiceNew extends React.Component {
     this.setState({ data, errors })
   }
 
+  handleSubmit(e) {
+    e.preventDefault()
+    axios.post('/api/invoices', this.state.data, {
+      //headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => console.log(res))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
+    console.log('submitted')
+  }
+
   render() {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms } = this.state.data
     console.log(this.state.data)
     return (
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <ClientNew/>
           <div className='invoiceNumber'>
             <label>Invoice Number<span>*</span></label>
@@ -127,6 +142,7 @@ class InvoiceNew extends React.Component {
               value={terms}
             />
           </div>
+          <button type='submit'>save invoice</button>
         </form>
       </div>
     )
