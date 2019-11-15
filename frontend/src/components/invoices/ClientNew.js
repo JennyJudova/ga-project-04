@@ -22,6 +22,7 @@ class ClientNew extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.sendData = this.sendData.bind(this)
   }
 
   handleChange(e) {
@@ -37,7 +38,12 @@ class ClientNew extends React.Component {
     })
       .then(res => console.log(res))
       .catch(err => this.setState({ errors: err.response.data.errors }))
+    this.sendData()
     console.log('submitted')
+  }
+
+  sendData() {
+    return this.props.parentCallback(this.state.data)
   }
 
   render() {

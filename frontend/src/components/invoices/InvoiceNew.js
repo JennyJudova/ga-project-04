@@ -33,15 +33,18 @@ class InvoiceNew extends React.Component {
         terms: '', //models.CharField(max_length=500, blank=True)
         is_paid: false, //models.BooleanField(default=False)
         currency: 'GBP', //models.CharField(max_length=50, default='GBP')
-        invoice_items: [],
-        client: {
-          email: 'SamWilson@Avengers.com'
-        }
+        invoice_items: [], 
+        client: {}
       }, 
       errors: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  //DOUBLE SPREADING HERE
+  callbackFunction = (clientTest) => {
+    this.setState({ data: { ...this.state.data, client: clientTest } })
   }
 
   handleChange(e) {
@@ -62,12 +65,12 @@ class InvoiceNew extends React.Component {
 
   render() {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms } = this.state.data
-    console.log(this.state.data)
+    console.log(this.state)
     return (
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
         <form onSubmit={(e) => this.handleSubmit(e)}>
-          <ClientNew/>
+          <ClientNew parentCallback = {this.callbackFunction}/>
           <div className='invoiceNumber'>
             <label>Invoice Number<span>*</span></label>
             <textarea
