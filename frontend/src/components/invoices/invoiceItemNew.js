@@ -21,6 +21,7 @@ class InvoiceItemNew extends React.Component {
       errors: {}
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(e) {
@@ -29,47 +30,60 @@ class InvoiceItemNew extends React.Component {
     this.setState({ data, errors })
   }
 
+  handleSubmit(e) {
+    e.preventDefault()
+    axios.post('/api/invoice-items', this.state.data, {
+      //headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => console.log(res))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
+    console.log('submitted')
+  }
+
   render() {
     const { item_description, quantity_hrs, unit_price_hrs, total } = this.state.data
     console.log(this.state.data)
     return (
       <div className='invoiceItemWrapper'>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label>Item Description<span>*</span></label>
             <textarea
-              placeholder='item_description,'
-              name='item_description,'
+              placeholder='item_description'
+              name='item_description'
               onChange={(e) => this.handleChange(e)}
               value={item_description}
             />
           </div>
-          <div>
-            <label>quantity_hrs<span>*</span></label>
-            <textarea
-              placeholder='0'
-              name='quantity_hrs'
-              onChange={(e) => this.handleChange(e)}
-              value={quantity_hrs}
-            />
-          </div>
-          <div>
-            <label>unit_price_hrs</label>
-            <textarea
-              placeholder='0'
-              name='unit_price_hrs'
-              onChange={(e) => this.handleChange(e)}
-              value={unit_price_hrs}
-            />
-          </div>
-          <div>
-            <label>total</label>
-            <textarea
-              placeholder='0'
-              name='total'
-              onChange={(e) => this.handleChange(e)}
-              value={total}
-            />
+          <div className='numbers'>
+            <div>
+              <label>quantity_hrs<span>*</span></label>
+              <textarea
+                placeholder='0'
+                name='quantity_hrs'
+                onChange={(e) => this.handleChange(e)}
+                value={quantity_hrs}
+              />
+            </div>
+            <div>
+              <label>unit_price_hrs</label>
+              <textarea
+                placeholder='0'
+                name='unit_price_hrs'
+                onChange={(e) => this.handleChange(e)}
+                value={unit_price_hrs}
+              />
+            </div>
+            <div>
+              <label>total</label>
+              <textarea
+                placeholder='0'
+                name='total'
+                onChange={(e) => this.handleChange(e)}
+                value={total}
+              />
+            </div>
+            <button type='submit'>Add Item to my invoice</button>
           </div>
         </form>
       </div>

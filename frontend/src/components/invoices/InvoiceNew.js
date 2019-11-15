@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
+import './invoiceItemNew'
+import InvoiceItemNew from './invoiceItemNew'
+
 class InvoiceNew extends React.Component {
   constructor() {
     super()
@@ -73,6 +76,7 @@ class InvoiceNew extends React.Component {
               value={due_date}
             />
           </div>
+          <InvoiceItemNew/>
           <div className='invoiceSummary'>
             <h3>Invoice Summary</h3>
             <div>
