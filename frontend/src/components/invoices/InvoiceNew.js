@@ -33,7 +33,14 @@ class InvoiceNew extends React.Component {
         terms: '', //models.CharField(max_length=500, blank=True)
         is_paid: false, //models.BooleanField(default=False)
         currency: 'GBP', //models.CharField(max_length=50, default='GBP')
-        invoice_items: [], 
+        invoice_items: [
+          // {
+          // item_description: 'Lasso Throwing 1 on 1 tutoring',
+          // quantity_hrs: 10.0,
+          // unit_price_hrs: 200.0,
+          // total: 2000.00
+          // }
+        ], 
         client: {}
       }, 
       errors: {}
@@ -43,8 +50,16 @@ class InvoiceNew extends React.Component {
   }
 
   //DOUBLE SPREADING HERE
-  callbackFunction = (clientTest) => {
-    this.setState({ data: { ...this.state.data, client: clientTest } })
+  callbackClientNew = (client) => {
+    this.setState({ data: { ...this.state.data, client: client } })
+  }
+
+  // //DOUBLE SPREADING & adding into an array
+  callbackInvoiceItem = (InvoiceItem) => {
+    console.log(InvoiceItem.item_description)
+    const currentItems = this.state.data.invoice_items
+    const InvoiceItems = currentItems.concat(InvoiceItem)
+    this.setState({ data: { ...this.state.data, invoice_items: InvoiceItems } })
   }
 
   handleChange(e) {
@@ -59,24 +74,27 @@ class InvoiceNew extends React.Component {
       //headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => console.log(res))
-      .catch(err => this.setState({ errors: err.response.data.errors }))
+      .catch(err => console.log(err.response.data.errors))
     console.log('submitted')
   }
+
+  //.catch(err => this.setState({ errors: err.response.data.errors }))
 
   render() {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms } = this.state.data
     console.log(this.state)
+    console.log(this.state.data.invoice_items)
     return (
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <ClientNew parentCallback = {this.callbackFunction}/>
+        <form onSubmit={this.handleSubmit}>
+          <ClientNew parentCallback = {this.callbackClientNew}/>
           <div className='invoiceNumber'>
             <label>Invoice Number<span>*</span></label>
             <textarea
               placeholder='invoice_number'
               name='invoice_number'
-              onChange={(e) => this.handleChange(e)}
+              onChange = {this.handleChange}
               value={invoice_number}
             />
           </div>
@@ -85,18 +103,18 @@ class InvoiceNew extends React.Component {
             <textarea
               placeholder='2019-11-21'
               name='issue_date'
-              onChange={(e) => this.handleChange(e)}
+              onChange = {this.handleChange}
               value={issue_date}
             />
             <label>due_date</label>
             <textarea
               placeholder='2019-11-21'
               name='due_date'
-              onChange={(e) => this.handleChange(e)}
+              onChange = {this.handleChange}
               value={due_date}
             />
           </div>
-          <InvoiceItemNew/>
+          <InvoiceItemNew parentCallback = {this.callbackInvoiceItem}/>
           <div className='invoiceSummary'>
             <h3>Invoice Summary</h3>
             <div>
@@ -104,7 +122,7 @@ class InvoiceNew extends React.Component {
               <textarea
                 placeholder='0'
                 name='subtotal'
-                onChange={(e) => this.handleChange(e)}
+                onChange = {this.handleChange}
                 value={subtotal}
               />
             </div>
@@ -113,7 +131,7 @@ class InvoiceNew extends React.Component {
               <textarea
                 placeholder='0'
                 name='vat'
-                onChange={(e) => this.handleChange(e)}
+                onChange = {this.handleChange}
                 value={vat}
               />
             </div>
@@ -122,7 +140,7 @@ class InvoiceNew extends React.Component {
               <textarea
                 placeholder='0'
                 name='total'
-                onChange={(e) => this.handleChange(e)}
+                onChange = {this.handleChange}
                 value={total}
               />
             </div>
@@ -132,7 +150,7 @@ class InvoiceNew extends React.Component {
             <textarea
               placeholder='notes'
               name='notes'
-              onChange={(e) => this.handleChange(e)}
+              onChange = {this.handleChange}
               value={notes}
             />
           </div>
@@ -141,7 +159,7 @@ class InvoiceNew extends React.Component {
             <textarea
               placeholder='terms'
               name='terms'
-              onChange={(e) => this.handleChange(e)}
+              onChange = {this.handleChange}
               value={terms}
             />
           </div>

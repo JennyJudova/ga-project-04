@@ -51,14 +51,14 @@ class ClientNew extends React.Component {
     console.log(this.state.data)
     return (
       <div className='clientNewWrapper'>
-        <div className='clientNewForm' onSubmit={this.handleSubmit}>
+        <div className='clientNewForm'>
           <h3>Add Client</h3>
           <div>
             <label>Full Name</label>
             <textarea
               placeholder='full_name'
               name='full_name'
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               value={full_name}
             />
           </div>
@@ -67,7 +67,7 @@ class ClientNew extends React.Component {
             <textarea
               placeholder='company_name'
               name='company_name'
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               value={company_name}
             />
           </div>
@@ -76,7 +76,7 @@ class ClientNew extends React.Component {
             <textarea
               placeholder='address'
               name='address'
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               value={address}
             />
           </div>
@@ -85,7 +85,7 @@ class ClientNew extends React.Component {
             <textarea
               placeholder='email'
               name='email'
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               value={email}
             />
           </div>

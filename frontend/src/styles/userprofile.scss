@@ -1,0 +1,34 @@
+.profileWrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  background: $gradient;
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  div {
+    display: flex;
+    margin: 15px;
+    width: 40%;
+  }
+}
+
+.invoices {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  h2, h4 {
+    text-align: center;
+    margin: 5px;
+  }
+  ul {
+    list-style-type: none;
+  }
+}

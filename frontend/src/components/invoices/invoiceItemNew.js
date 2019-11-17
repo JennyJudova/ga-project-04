@@ -22,6 +22,7 @@ class InvoiceItemNew extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.sendData = this.sendData.bind(this)
   }
 
   handleChange(e) {
@@ -37,7 +38,12 @@ class InvoiceItemNew extends React.Component {
     })
       .then(res => console.log(res))
       .catch(err => this.setState({ errors: err.response.data.errors }))
+    this.sendData()
     console.log('submitted')
+  }
+
+  sendData() {
+    return this.props.parentCallback(this.state.data)
   }
 
   render() {
@@ -51,7 +57,7 @@ class InvoiceItemNew extends React.Component {
             <textarea
               placeholder='item_description'
               name='item_description'
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               value={item_description}
             />
           </div>
@@ -61,7 +67,7 @@ class InvoiceItemNew extends React.Component {
               <textarea
                 placeholder='0'
                 name='quantity_hrs'
-                onChange={(e) => this.handleChange(e)}
+                onChange={this.handleChange}
                 value={quantity_hrs}
               />
             </div>
@@ -70,7 +76,7 @@ class InvoiceItemNew extends React.Component {
               <textarea
                 placeholder='0'
                 name='unit_price_hrs'
-                onChange={(e) => this.handleChange(e)}
+                onChange={this.handleChange}
                 value={unit_price_hrs}
               />
             </div>
@@ -79,7 +85,7 @@ class InvoiceItemNew extends React.Component {
               <textarea
                 placeholder='0'
                 name='total'
-                onChange={(e) => this.handleChange(e)}
+                onChange={this.handleChange}
                 value={total}
               />
             </div>

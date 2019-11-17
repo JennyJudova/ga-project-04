@@ -1,0 +1,108 @@
+@mixin placeholder-font {
+  color: #86a8e7;
+  font-weight: 300;
+  font-size: 13px;
+  padding: 5px 0px 0px 5px;
+}
+
+@mixin textarea-font {
+  color: black;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 0px 0px 10px;
+}
+
+.invoiceWrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $gradient;
+}
+
+form {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  width: 75%;
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+}
+
+.invoiceNumber {
+  width: 30%;
+}
+
+.invoiceDate {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+
+.invoiceItemWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 30;
+  .invoiceItemForm {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    div {
+      display: flex;
+      margin: 0;
+    }
+    .numbers {
+      display: flex;
+      flex-direction: row;
+      margin: 0;
+      margin: 0 100px;
+      textarea {
+        width: 60px;
+      }
+      div {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+
+.invoiceSummary {
+  align-self: flex-end;
+  div {
+    margin: 10px 0;
+  }
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-top: 30px;
+  text-align: center;
+}
+
+textarea {
+  border: none;
+  @include textarea-font;
+}
+
+small {
+  color: rgb(248, 241, 241);
+}
+
+a {
+  text-decoration: none;
+}
+
+small:hover {
+  color: $hovercolor;
+}
+
+::placeholder {
+  @include placeholder-font;
+}

@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
-    invoices = InvoiceSerializer(many=True)
+    invoices = InvoiceSerializer(many=True, read_only=True)
 
     def validate(self, data):
 
