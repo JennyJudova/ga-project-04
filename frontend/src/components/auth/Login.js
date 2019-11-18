@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 
 import { Link } from 'react-router-dom'
+import Auth from '../../lib/auth'
+
 
 class Login extends React.Component {
   constructor() {
@@ -30,18 +32,29 @@ class Login extends React.Component {
     axios.post('/api/login', this.state.data )
       .then(res => { 
         console.log(res.data.token)
-        //Auth.setToken(res.data.token)
-        //this.props.history.goBack()
+        Auth.setToken(res.data.token)
+        this.props.history.push('/profile')
       })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
   
+  // handleSubmit(e) {
+  //   e.preventDefault()
+  //   axios.post('/api/login', this.state.data )
+  //     .then(res => { 
+  //       console.log(res.data.token)
+  //       Auth.setToken(res.data.token)
+  //       this.props.history.goBack()
+  //     })
+  //     .catch(err => this.setState({ errors: err.response.data.errors }))
+  // }
+
   render() {
-    // console.log('render state Login', this.state)
-    // console.log('render errors', this.state.errors)
-    // console.log('login props', this.props)
-    // console.log('history', this.props.history)
     const { email, password } = this.state.data
+    console.log('render state Login', this.state)
+    console.log('render errors', this.state.errors)
+    console.log('login props', this.props)
+    console.log('history', this.props.history)
     console.log(this.state)
     return (
       <div className='invoiceWrapper'>

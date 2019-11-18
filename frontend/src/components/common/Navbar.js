@@ -29,7 +29,7 @@ class Navbar extends React.Component {
           <Link to='/invoices/new'>Add invoice</Link>
           <Link to='/register'>Register</Link>
           <Link to='/login'>Login</Link>
-          <Link path = '/profile/:id'>Profile</Link>
+          <Link to = '/profile'>Profile</Link>
         </div>
         <a 
           className='burgerMenu'

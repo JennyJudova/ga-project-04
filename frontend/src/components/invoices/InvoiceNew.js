@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import InvoiceItemNew from './InvoiceItemNew'
 import ClientNew from './ClientNew'
+import Auth from '../../lib/auth'
 
 
 class InvoiceNew extends React.Component {
@@ -34,12 +35,23 @@ class InvoiceNew extends React.Component {
         is_paid: false, //models.BooleanField(default=False)
         currency: 'GBP', //models.CharField(max_length=50, default='GBP')
         invoice_items: [], 
-        client: {}
+        client: {}, 
+        creator: {}
       }, 
       errors: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    const creator = {
+      id: localStorage.id,
+      email: localStorage.email,
+      username: localStorage.username
+    }
+    console.log(creator)
+    this.setState({ data: { ...this.state.data, creator: creator } })
   }
 
   //DOUBLE SPREADING HERE
@@ -64,7 +76,7 @@ class InvoiceNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/invoices', this.state.data, {
-      //headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => console.log(res))
       .catch(err => console.log(err.response.data.errors))
@@ -74,9 +86,9 @@ class InvoiceNew extends React.Component {
   //.catch(err => this.setState({ errors: err.response.data.errors }))
 
   render() {
-    const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms } = this.state.data
+    const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items } = this.state.data
     console.log(this.state)
-    console.log(this.state.data.invoice_items)
+    console.log(invoice_items)
     return (
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
@@ -108,6 +120,21 @@ class InvoiceNew extends React.Component {
             />
           </div>
           <InvoiceItemNew parentCallback = {this.callbackInvoiceItem}/>
+          {
+            <div className='invoiceItemWrapper'>
+              {invoice_items.map(invoice => (
+                <div key={invoice.id} className='invoiceItemForm'>
+                  <p>{invoice.item_description}</p>
+                  <div className='num'>
+                    <p>{invoice.quantity_hrs}</p>
+                    <p>{invoice.unit_price_hrs}</p>
+                    <p>{invoice.total}</p>
+                  </div>
+                </div>
+              )
+              )}
+            </div>
+          }
           <div className='invoiceSummary'>
             <h3>Invoice Summary</h3>
             <div>
@@ -164,3 +191,21 @@ class InvoiceNew extends React.Component {
 }
 
 export default InvoiceNew
+
+
+{/* <div key={invoice.id} className='invoiceItemForm'>
+<textarea
+  value={invoice.item_description}
+/>
+<div className='num'>
+  <textarea
+    value={invoice.quantity_hrs}
+  />
+  <textarea
+    value={invoice.unit_price_hrs}
+  />
+  <textarea
+    value={invoice.total}
+  />
+</div>
+</div> */}

@@ -32,8 +32,7 @@ class NestedInvoiceSerializer(serializers.ModelSerializer):
 class NestedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        invoices = NestedInvoiceSerializer(many=True, read_only=True)
-        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name', 'invoices')
+        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
 
 
 
@@ -59,16 +58,16 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
     invoice_items = NestedInvoice_ItemSerializer(many=True)
     client = NestedClientSerializer()
-    creator = NestedUserSerializer(read_only=True)
+    creator = NestedUserSerializer()
 
     def create(self, data):
         invoice_items_data = data.pop('invoice_items')
         client_data = data.pop('client')
-        #creator_data = data.pop('creator')
+        creator_data = data.pop('creator')
 
         invoice = Invoice(**data)
         invoice.client = Client.objects.get(**client_data)
-        #invoice.creator = User.objects.get(**creator_data)
+        invoice.creator = User.objects.get(**creator_data)
         invoice_items = [Invoice_Item.objects.get(**invoice_item_data) for invoice_item_data in invoice_items_data]
 
         invoice.save()

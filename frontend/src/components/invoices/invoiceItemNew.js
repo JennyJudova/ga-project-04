@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import Auth from '../../lib/auth'
+
 class InvoiceItemNew extends React.Component {
   constructor() {
     super()
@@ -34,7 +36,7 @@ class InvoiceItemNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/invoice-items', this.state.data, {
-      //headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => console.log(res))
       .catch(err => this.setState({ errors: err.response.data.errors }))

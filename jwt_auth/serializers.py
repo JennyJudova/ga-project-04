@@ -9,10 +9,10 @@ from invoices.serializers import InvoiceSerializer
 
 User = get_user_model()
 
-# class NestedUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
+class NestedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -37,21 +37,6 @@ class UserSerializer(serializers.ModelSerializer):
         data['password'] = make_password(password)
         return data
 
-    # def update(self, user, data):
-
-    #     user.username = data.get('username', user.username)
-    #     user.email = data.get('email', user.username)
-    #     user.logo_image = data.get('logo_image', user.username)
-    #     user.tax_reg = data.get('tax_reg', user.username)
-    #     user.address = data.get('address', user.username)
-    #     user.phone_num = data.get('phone_num', user.username)
-    #     user.company_name = data.get('company_name', user.username)
-    #     user.password = data.get('password', user.username)
-    #     user.password_confirmation = data.get('password_confirmation', user.username)
-
-    #     user.save()
-    #     return user
-
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name', 'invoices')
+        fields = ('id', 'username', 'email', 'password', 'password_confirmation', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name', 'invoices')

@@ -20,7 +20,7 @@ const App = () => (
         <Route path = '/invoices/new' component={InvoiceNew} />
         <Route path = '/invoices/:id' component={InvoiceShow} />
         <Route path = '/invoices' component={InvoicesIndex} />
-        <Route path = '/profile/:id' component={UserProfile} />
+        <Route path = '/profile' component={UserProfile} />
         <Route path = '/register' component={Register} />
         <Route path = '/login' component={Login} />
       </Switch>

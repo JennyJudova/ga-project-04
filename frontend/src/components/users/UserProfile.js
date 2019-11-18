@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 import { Link } from 'react-router-dom'
+import Auth from '../../lib/auth'
 
 class UserProfile extends React.Component {
   constructor() {
@@ -9,19 +10,60 @@ class UserProfile extends React.Component {
 
     this.state = {
       data: {},
-      errors: {}
+      errors: {}, 
+      storageSet: false
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.setId = this.setId.bind(this)
   }
 
+  // componentDidMount() {
+  //   const profileId = this.props.match.params.id
+  //   axios.get(`/api/profile/${profileId}`)
+  //     .then(res => this.setState( { data: res.data }))
+  //     .catch(err => console.log(err.config))
+  // }
+
+  // componentDidMount() {
+  //   axios.get('/api/profile', { 
+  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
+  //   })
+  //     .then(res => {
+  //       const displayStatus = {}
+  //       res.data.listingHistory.forEach(listing => {
+  //         displayStatus[listing._id] = false 
+  //       })
+  //       this.setState({ data: res.data, displayStatus })
+  //     })
+  //     .then(() => this.interval = setInterval(() => this.getUserInfo(), 1000))
+  //     .catch(err => console.log(err.message))
+  // }
+
   componentDidMount() {
-    const profileId = this.props.match.params.id
-    axios.get(`/api/profile/${profileId}`)
+    axios.get('/api/profile', {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
       .then(res => this.setState( { data: res.data }))
       .catch(err => console.log(err.config))
   }
+
+  componentDidUpdate() {
+    if (this.state.storageSet === false) {
+      this.setId()
+      this.setState( { storageSet: true } )
+    }
+  }
+
+  setId() {
+    const id = this.state.data.id
+    const username = this.state.data.username
+    const email = this.state.data.email
+    localStorage.setItem('id', id)
+    localStorage.setItem('username', username)
+    localStorage.setItem('email', email)
+  } 
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
@@ -31,8 +73,10 @@ class UserProfile extends React.Component {
 
   handleSubmit() {
     //e.preventDefault()
-    const profileId = this.props.match.params.id
-    axios.put(`/api/profile/${profileId}/edit`, this.state.data)
+    //const profileId = this.state.data.id
+    axios.put('/api/profile', this.state.data, 
+      { headers: { Authorization: `Bearer ${Auth.getToken()}` } 
+      })
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data.errors ))
     console.log('submitted')
@@ -45,7 +89,9 @@ class UserProfile extends React.Component {
 
   render() {
     const { data } = this.state
-    console.log(this.state)
+    console.log('state', this.state.data.id)
+    console.log('props', this.props)
+    console.log('localStorage', localStorage)
     return (
       <div className='profileWrapper'>
         { data &&
