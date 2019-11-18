@@ -7,11 +7,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-class NestedUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name')
-
 
 class NestedClientSerializer(serializers.ModelSerializer):
 
@@ -33,6 +28,12 @@ class NestedInvoiceSerializer(serializers.ModelSerializer):
         model = Invoice
         fields = ('id', 'invoice_number', 'issue_date', 'due_date', 'vat_registered', 'subtotal', 'vat', 'total', 'notes', 'terms', 'is_paid', 'currency', 'invoice_items')
 
+
+class NestedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        invoices = NestedInvoiceSerializer(many=True, read_only=True)
+        fields = ('id', 'username', 'email', 'logo_image', 'tax_reg', 'address', 'phone_num', 'company_name', 'invoices')
 
 
 

@@ -33,14 +33,7 @@ class InvoiceNew extends React.Component {
         terms: '', //models.CharField(max_length=500, blank=True)
         is_paid: false, //models.BooleanField(default=False)
         currency: 'GBP', //models.CharField(max_length=50, default='GBP')
-        invoice_items: [
-          // {
-          // item_description: 'Lasso Throwing 1 on 1 tutoring',
-          // quantity_hrs: 10.0,
-          // unit_price_hrs: 200.0,
-          // total: 2000.00
-          // }
-        ], 
+        invoice_items: [], 
         client: {}
       }, 
       errors: {}

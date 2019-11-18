@@ -25,18 +25,19 @@ class Navbar extends React.Component {
     return (
       <nav className={`${this.state.burgerOpen ? 'burgerOpen' : ''}`}>
         <div>
-          <Link to="/">Home</Link>
-          <Link to="/invoices/new">Add invoice</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/login">Login</Link>
+          <Link to='/'>Home</Link>
+          <Link to='/invoices/new'>Add invoice</Link>
+          <Link to='/register'>Register</Link>
+          <Link to='/login'>Login</Link>
+          <Link path = '/profile/:id'>Profile</Link>
         </div>
         <a 
-          className="burgerMenu"
+          className='burgerMenu'
           onClick={this.toggleNavbar}
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <span aria-hidden='true'></span>
+          <span aria-hidden='true'></span>
+          <span aria-hidden='true'></span>
         </a>
       </nav>
     )

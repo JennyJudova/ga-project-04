@@ -1,13 +1,16 @@
 #pylint: disable = no-member, arguments-differ
 
+from rest_framework import serializers
 from rest_framework.views import APIView
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, UpdateAPIView, RetrieveDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 from .serializers import UserSerializer
+from invoices.serializers import NestedUserSerializer
+
 User = get_user_model()
 
 class RegisterView(APIView):
@@ -39,6 +42,16 @@ class LoginView(APIView):
 
         token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
         return Response({'token':token, 'message':f'Welcome back {user.username}'})
+
+# class ProfileUpdate(UpdateAPIView):
+#     queryset = User
+#     serializer_class = NestedUserSerializer
+
+
+# class ProfileView(RetrieveDestroyAPIView):
+#     queryset = User
+#     serializer_class = UserSerializer
+
 
 class ProfileView(RetrieveUpdateDestroyAPIView):
     queryset = User

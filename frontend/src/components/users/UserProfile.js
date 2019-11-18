@@ -32,7 +32,7 @@ class UserProfile extends React.Component {
   handleSubmit() {
     //e.preventDefault()
     const profileId = this.props.match.params.id
-    axios.put(`/api/profile/${profileId}/`, this.state.data)
+    axios.put(`/api/profile/${profileId}/edit`, this.state.data)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data.errors ))
     console.log('submitted')
