@@ -1,10 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Modal from 'react-modal'
 
 import InvoiceItemNew from './InvoiceItemNew'
-import ClientNew from './ClientNew'
 import Auth from '../../lib/auth'
+import NewClientModal from './NewClientModal'
 
 
 class InvoiceNew extends React.Component {
@@ -54,6 +55,10 @@ class InvoiceNew extends React.Component {
   //   this.setState({ data: { ...this.state.data, creator: creator } })
   // }
 
+  componentDidMount() {
+    Modal.setAppElement('body')
+  }
+
   //DOUBLE SPREADING HERE
   callbackClientNew = (client) => {
     this.setState({ data: { ...this.state.data, client: client } })
@@ -94,7 +99,7 @@ class InvoiceNew extends React.Component {
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
         <form onSubmit={this.handleSubmit}>
-          <ClientNew parentCallback = {this.callbackClientNew}/>
+          <NewClientModal parentCallback = {this.callbackClientNew}/>
           <div className='invoiceNumber'>
             <h4>Invoice Number<span>*</span></h4>
             <textarea
@@ -201,7 +206,7 @@ class InvoiceNew extends React.Component {
             />
           </div>
           {!localStorage.token && <Link to='/login'><button>Login to create an invoice</button></Link>}
-          {localStorage.token && <button type='submit'>save invoice</button>}
+          {localStorage.token && <button type='submit'>Save invoice</button>}
         </form>
       </div>
     )

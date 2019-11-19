@@ -55,47 +55,45 @@ class ClientNew extends React.Component {
     console.log(this.state.data)
     return (
       <div className='clientNewWrapper'>
-        <div className='clientNewForm'>
-          <h3>Add Client</h3>
-          <div>
-            <label>Full Name</label>
-            <textarea
-              placeholder='John Wick'
-              name='full_name'
-              onChange={this.handleChange}
-              value={full_name}
-            />
-          </div>
-          <div>
-            <label>Company Name</label>
-            <textarea
-              placeholder='Parabellum'
-              name='company_name'
-              onChange={this.handleChange}
-              value={company_name}
-            />
-          </div>
-          <div>
-            <label>Address</label>
-            <textarea
-              placeholder='Continental Hotel, NYC'
-              name='address'
-              onChange={this.handleChange}
-              value={address}
-            />
-          </div>
-          <div>
-            <label>Email<span>*</span></label>
-            <textarea
-              placeholder='jw@BabaYaga.co'
-              name='email'
-              onChange={this.handleChange}
-              value={email}
-            />
-          </div>
-          {localStorage.token && <button type='submit' onClick={this.handleSubmit}>Add Client</button>}
-          {!localStorage.token && <Link to='/login'><button>Login to create a client</button></Link>}
+        <h3>Add Client</h3>
+        <div>
+          <label>Full Name</label>
+          <textarea
+            placeholder='John Wick'
+            name='full_name'
+            onChange={this.handleChange}
+            value={full_name}
+          />
         </div>
+        <div>
+          <label>Company Name</label>
+          <textarea
+            placeholder='Parabellum'
+            name='company_name'
+            onChange={this.handleChange}
+            value={company_name}
+          />
+        </div>
+        <div>
+          <label>Address</label>
+          <textarea
+            placeholder='Continental Hotel, NYC'
+            name='address'
+            onChange={this.handleChange}
+            value={address}
+          />
+        </div>
+        <div>
+          <label>Email<span>*</span></label>
+          <textarea
+            placeholder='jw@BabaYaga.co'
+            name='email'
+            onChange={this.handleChange}
+            value={email}
+          />
+        </div>
+        {localStorage.token && <button type='submit' onClick={this.handleSubmit}>Add Client</button>}
+        {!localStorage.token && <Link to='/login'><button>Login to create a client</button></Link>}
       </div>
     )
   }
