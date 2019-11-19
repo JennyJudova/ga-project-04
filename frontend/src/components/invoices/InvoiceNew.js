@@ -35,8 +35,7 @@ class InvoiceNew extends React.Component {
         is_paid: false, //models.BooleanField(default=False)
         currency: 'GBP', //models.CharField(max_length=50, default='GBP')
         invoice_items: [], 
-        client: {}, 
-        creator: {}
+        client: {}
       }, 
       errors: {}
     }
@@ -44,15 +43,15 @@ class InvoiceNew extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    const creator = {
-      id: localStorage.id,
-      email: localStorage.email,
-      username: localStorage.username
-    }
-    console.log(creator)
-    this.setState({ data: { ...this.state.data, creator: creator } })
-  }
+  // componentDidMount() {
+  //   const creator = {
+  //     id: localStorage.id,
+  //     email: localStorage.email,
+  //     username: localStorage.username
+  //   }
+  //   console.log(creator)
+  //   this.setState({ data: { ...this.state.data, creator: creator } })
+  // }
 
   //DOUBLE SPREADING HERE
   callbackClientNew = (client) => {
