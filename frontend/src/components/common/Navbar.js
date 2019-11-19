@@ -35,7 +35,7 @@ class Navbar extends React.Component {
         <div>
           <Link to='/'>Home</Link>
           <Link to='/invoices/new'>Add invoice</Link>
-          <Link to = '/profile'>Profile</Link>
+          {localStorage.token && <Link to = '/profile'>Profile</Link>}
           {!localStorage.token && <Link to='/register'>Register</Link>}
           {!localStorage.token && <Link to='/login'>Login</Link>}
           {localStorage.token && <a onClick={this.handleLogout}>Logout</a>}

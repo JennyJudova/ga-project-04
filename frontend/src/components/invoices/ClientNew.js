@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import Auth from '../../lib/auth'
+
 
 class ClientNew extends React.Component {
   constructor() {
@@ -58,40 +60,41 @@ class ClientNew extends React.Component {
           <div>
             <label>Full Name</label>
             <textarea
-              placeholder='full_name'
+              placeholder='John Wick'
               name='full_name'
               onChange={this.handleChange}
               value={full_name}
             />
           </div>
           <div>
-            <label>company_name</label>
+            <label>Company Name</label>
             <textarea
-              placeholder='company_name'
+              placeholder='Parabellum'
               name='company_name'
               onChange={this.handleChange}
               value={company_name}
             />
           </div>
           <div>
-            <label>address</label>
+            <label>Address</label>
             <textarea
-              placeholder='address'
+              placeholder='Continental Hotel, NYC'
               name='address'
               onChange={this.handleChange}
               value={address}
             />
           </div>
           <div>
-            <label>email<span>*</span></label>
+            <label>Email<span>*</span></label>
             <textarea
-              placeholder='email'
+              placeholder='jw@BabaYaga.co'
               name='email'
               onChange={this.handleChange}
               value={email}
             />
           </div>
-          <button type='submit' onClick={this.handleSubmit}>Add new client</button>
+          {localStorage.token && <button type='submit' onClick={this.handleSubmit}>Add Client</button>}
+          {!localStorage.token && <Link to='/login'><button>Login to create a client</button></Link>}
         </div>
       </div>
     )

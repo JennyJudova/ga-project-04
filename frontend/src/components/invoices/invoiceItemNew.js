@@ -52,48 +52,50 @@ class InvoiceItemNew extends React.Component {
     const { item_description, quantity_hrs, unit_price_hrs, total } = this.state.data
     console.log(this.state.data)
     return (
-      <div className='invoiceItemWrapper'>
-        <div className='invoiceItemForm' onSubmit={this.handleSubmit}>
-          <div>
-            <label>Item Description<span>*</span></label>
-            <textarea
-              placeholder='item_description'
-              name='item_description'
-              onChange={this.handleChange}
-              value={item_description}
-            />
-          </div>
-          <div className='numbers'>
+      <div className='invoiceItem'>
+        <div className='invoiceItemWrapper'>
+          <div className='invoiceItemForm' onSubmit={this.handleSubmit}>
             <div>
-              <label>quantity_hrs<span>*</span></label>
+              <label>Item Description<span>*</span></label>
               <textarea
-                placeholder='0'
-                name='quantity_hrs'
+                placeholder='Dog walking'
+                name='item_description'
                 onChange={this.handleChange}
-                value={quantity_hrs}
+                value={item_description}
               />
             </div>
-            <div>
-              <label>unit_price_hrs</label>
-              <textarea
-                placeholder='0'
-                name='unit_price_hrs'
-                onChange={this.handleChange}
-                value={unit_price_hrs}
-              />
+            <div className='numbers'>
+              <div>
+                <label>QTY / HRS<span>*</span></label>
+                <textarea
+                  placeholder='0'
+                  name='quantity_hrs'
+                  onChange={this.handleChange}
+                  value={quantity_hrs}
+                />
+              </div>
+              <div>
+                <label>Unit price</label>
+                <textarea
+                  placeholder='0'
+                  name='unit_price_hrs'
+                  onChange={this.handleChange}
+                  value={unit_price_hrs}
+                />
+              </div>
+              <div>
+                <label>Total</label>
+                <textarea
+                  placeholder='0'
+                  name='total'
+                  onChange={this.handleChange}
+                  value={total}
+                />
+              </div>
             </div>
-            <div>
-              <label>total</label>
-              <textarea
-                placeholder='0'
-                name='total'
-                onChange={this.handleChange}
-                value={total}
-              />
-            </div>
-            <button type='submit' onClick={this.handleSubmit}>Add Item to my invoice</button>
           </div>
         </div>
+        {localStorage.token && <button type='submit' onClick={this.handleSubmit}>Add to invoice</button>}
       </div>
     )
   }

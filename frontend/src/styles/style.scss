@@ -4,9 +4,16 @@ $gradient: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/
 // linear-gradient(53deg, rgba(251,169,63,1) 3%, rgba(252,70,105,0.6143644957983193) 62%);
 $background: transparent;
 $navbarcolor: #7f7fd5;
+$footercolor: #7f7fd5;
 $hovercolor: #91eae4;
+$buttoncolor: #91eae4;
+$buttonhover: #7f7fd5;
+$logocolor: #cc5490;
 
 @import './form.scss';
 @import './global.scss';
 @import './navbar.scss';
-@import './userprofile.scss'
+@import './userprofile.scss';
+@import './createdinvoiceitem.scss';
+@import './home.scss';
+@import './footer.scss';

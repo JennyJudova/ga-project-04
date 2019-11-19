@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import InvoiceItemNew from './InvoiceItemNew'
 import ClientNew from './ClientNew'
@@ -95,23 +96,23 @@ class InvoiceNew extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <ClientNew parentCallback = {this.callbackClientNew}/>
           <div className='invoiceNumber'>
-            <label>Invoice Number<span>*</span></label>
+            <h4>Invoice Number<span>*</span></h4>
             <textarea
-              placeholder='invoice_number'
+              placeholder='CH1 2014'
               name='invoice_number'
               onChange = {this.handleChange}
               value={invoice_number}
             />
           </div>
           <div className='invoiceDate'>
-            <label>issue_date<span>*</span></label>
+            <label>Issue Date<span>*</span></label>
             <textarea
               placeholder='2019-11-21'
-              name='issue_date'
+              name='Issue Date'
               onChange = {this.handleChange}
               value={issue_date}
             />
-            <label>due_date</label>
+            <label>Due Date</label>
             <textarea
               placeholder='2019-11-21'
               name='due_date'
@@ -121,14 +122,30 @@ class InvoiceNew extends React.Component {
           </div>
           <InvoiceItemNew parentCallback = {this.callbackInvoiceItem}/>
           {
-            <div className='invoiceItemWrapper'>
+            <div className='invoiceItemWrapperCreated'>
               {invoice_items.map(invoice => (
                 <div key={invoice.id} className='invoiceItemForm'>
-                  <p>{invoice.item_description}</p>
-                  <div className='num'>
-                    <p>{invoice.quantity_hrs}</p>
-                    <p>{invoice.unit_price_hrs}</p>
-                    <p>{invoice.total}</p>
+                  <div>
+                    <textarea disabled
+                      placeholder={invoice.item_description}
+                    />
+                  </div>
+                  <div className='numbers'>
+                    <div>
+                      <textarea disabled
+                        value={invoice.quantity_hrs}
+                      />
+                    </div>
+                    <div>
+                      <textarea disabled
+                        value={invoice.unit_price_hrs}
+                      />
+                    </div>
+                    <div>
+                      <textarea disabled
+                        value={invoice.total}
+                      />
+                    </div>
                   </div>
                 </div>
               )
@@ -138,7 +155,7 @@ class InvoiceNew extends React.Component {
           <div className='invoiceSummary'>
             <h3>Invoice Summary</h3>
             <div>
-              <label>subtotal</label>
+              <label>Subtotal</label>
               <textarea
                 placeholder='0'
                 name='subtotal'
@@ -147,7 +164,7 @@ class InvoiceNew extends React.Component {
               />
             </div>
             <div>
-              <label>vat</label>
+              <label>VAT</label>
               <textarea
                 placeholder='0'
                 name='vat'
@@ -156,7 +173,7 @@ class InvoiceNew extends React.Component {
               />
             </div>
             <div>
-              <label>total</label>
+              <label>Total</label>
               <textarea
                 placeholder='0'
                 name='total'
@@ -165,25 +182,26 @@ class InvoiceNew extends React.Component {
               />
             </div>
           </div>
-          <div className='notes'>
-            <label>notes</label>
+          <div className='Notes'>
+            <label>Notes</label>
             <textarea
-              placeholder='notes'
+              placeholder='Notes'
               name='notes'
               onChange = {this.handleChange}
               value={notes}
             />
           </div>
           <div className='notes'>
-            <label>terms</label>
+            <label>Terms</label>
             <textarea
-              placeholder='terms'
+              placeholder='Happy to talk about a discount if you kill me last.'
               name='terms'
               onChange = {this.handleChange}
               value={terms}
             />
           </div>
-          <button type='submit'>save invoice</button>
+          {!localStorage.token && <Link to='/login'><button>Login to create an invoice</button></Link>}
+          {localStorage.token && <button type='submit'>save invoice</button>}
         </form>
       </div>
     )
@@ -208,4 +226,51 @@ export default InvoiceNew
     value={invoice.total}
   />
 </div>
+</div> */}
+
+{/* <div className='createdInvoiceItemWrapper'>
+  {invoice_items.map(invoice => (
+    <div key={invoice.id} className='createdinvoiceItemForm'>
+      <p>{invoice.item_description}</p>
+      <div className='num'>
+        <p>{invoice.quantity_hrs}</p>
+        <p>{invoice.unit_price_hrs}</p>
+        <p>{invoice.total}</p>
+      </div>
+    </div>
+  )
+  )}
+</div> */}
+
+
+{/* <div className='invoiceItemWrapper'>
+{invoice_items.map(invoice => (
+<div key={invoice.id} className='invoiceItemForm'>
+  <div>
+    <textarea
+      value={invoice.item_description}
+    />
+  </div>
+  <div className='numbers'>
+    <div>
+      <textarea
+        value={invoice.quantity_hrs}
+      />
+    </div>
+    <div>
+      <label>unit_price_hrs</label>
+      <textarea
+        value={invoice.unit_price_hrs}
+      />
+    </div>
+    <div>
+      <label>total</label>
+      <textarea
+        value={invoice.total}
+      />
+    </div>
+  </div>
+</div>
+)
+)}
 </div> */}

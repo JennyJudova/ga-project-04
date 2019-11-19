@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import { Link } from 'react-router-dom'
+
 class Register extends React.Component {
   constructor() {
     super()
@@ -76,6 +78,9 @@ class Register extends React.Component {
             />
           </div>
           <button type="submit">Register</button>
+          <Link to="/login">
+            <small>Have an account? Click here to login.</small>
+          </Link>
         </form>
       </div>
     )

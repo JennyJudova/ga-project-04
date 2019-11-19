@@ -137,15 +137,6 @@ class UserProfile extends React.Component {
               />
             </div>
             <div>
-              <label>Logo</label>
-              <textarea
-                placeholder='Logo'
-                name='logo_image'
-                onChange={this.handleChange}
-                value={data.logo_image}
-              />
-            </div>
-            <div>
               <label>Phone Number</label>
               <textarea
                 placeholder='Phone Number'
@@ -207,3 +198,14 @@ export default UserProfile
 // total: "450.00"
 // vat: 0
 // vat_registered: false
+
+
+{/* <div>
+<label>Logo</label>
+<textarea
+  placeholder='Logo'
+  name='logo_image'
+  onChange={this.handleChange}
+  value={data.logo_image}
+/>
+</div> */}
