@@ -9,6 +9,10 @@ class Auth {
 
   static logout () {  // do not need to return anything from this function - removes token from App to log user out
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
+    localStorage.removeItem('email')
+    localStorage.removeItem('username')
+
   }
 
   static getPayload () {

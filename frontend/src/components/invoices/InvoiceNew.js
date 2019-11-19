@@ -74,6 +74,7 @@ class InvoiceNew extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log('data on submit', this.state.data)
     e.preventDefault()
     axios.post('/api/invoices', this.state.data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }

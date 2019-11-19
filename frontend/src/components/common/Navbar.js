@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+
+import Auth from '../../lib/auth'
+
 //import Auth from '../../lib/auth'
 
 class Navbar extends React.Component {
@@ -8,7 +11,7 @@ class Navbar extends React.Component {
     this.state = {
       burgerOpen: false
     }
-    //this.handleLogout = this.handleLogout.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
     this.toggleNavbar = this.toggleNavbar.bind(this)
   }
 
@@ -21,15 +24,21 @@ class Navbar extends React.Component {
     this.setState({ burgerOpen: !this.state.burgerOpen })
   }
 
+  handleLogout() {
+    Auth.logout()
+    this.props.history.push('/')
+  }
+
   render() {
     return (
       <nav className={`${this.state.burgerOpen ? 'burgerOpen' : ''}`}>
         <div>
           <Link to='/'>Home</Link>
           <Link to='/invoices/new'>Add invoice</Link>
-          <Link to='/register'>Register</Link>
-          <Link to='/login'>Login</Link>
           <Link to = '/profile'>Profile</Link>
+          {!localStorage.token && <Link to='/register'>Register</Link>}
+          {!localStorage.token && <Link to='/login'>Login</Link>}
+          {localStorage.token && <a onClick={this.handleLogout}>Logout</a>}
         </div>
         <a 
           className='burgerMenu'
