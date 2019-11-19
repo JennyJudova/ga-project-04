@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import TextareaAutosize from 'react-autosize-textarea';
+
 import Auth from '../../lib/auth'
 
 
@@ -10,6 +12,8 @@ class InvoiceShow extends React.Component {
     this.state = {
       data: null
     }
+
+    this.handleDelete = this.handleDelete.bind(this)
     
   }
 
@@ -24,6 +28,16 @@ class InvoiceShow extends React.Component {
       .catch(err => console.log(err))
   }
 
+  handleDelete(e) {
+    e.preventDefault()
+    const invoiceId = this.props.match.params.id
+    axios.delete(`/api/invoices/${invoiceId}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(() => this.props.history.push('/profile'))
+      .catch(err => console.log(err))
+  }
+
   render() {
     if (!this.state.data) return null
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items } = this.state.data
@@ -31,7 +45,7 @@ class InvoiceShow extends React.Component {
     return (
       <div className='invoiceWrapper'>
         <h1>Invoice {invoice_number}</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <div className='invoiceNumber'>
             <h4>Invoice Number<span>*</span></h4>
             <textarea
@@ -62,23 +76,31 @@ class InvoiceShow extends React.Component {
               {invoice_items.map(invoice => (
                 <div key={invoice.id} className='invoiceItemForm'>
                   <div>
-                    <textarea disabled
+                    <TextareaAutosize 
+                      style={{ minHeight: 30 }} 
+                      disabled
                       placeholder={invoice.item_description}
                     />
                   </div>
                   <div className='numbers'>
                     <div>
-                      <textarea disabled
+                      <TextareaAutosize 
+                        style={{ minHeight: 30 }}
+                        disabled
                         value={invoice.quantity_hrs}
                       />
                     </div>
                     <div>
-                      <textarea disabled
+                      <TextareaAutosize  
+                        style={{ minHeight: 30 }}
+                        disabled
                         value={invoice.unit_price_hrs}
                       />
                     </div>
                     <div>
-                      <textarea disabled
+                      <TextareaAutosize 
+                        style={{ minHeight: 30 }}
+                        disabled
                         value={invoice.total}
                       />
                     </div>
@@ -130,13 +152,14 @@ class InvoiceShow extends React.Component {
           <div className='notes'>
             <label>Terms</label>
             <textarea
-              placeholder='Happy to talk about a discount if you kill me last.'
+              placeholder='Terms'
               name='terms'
               onChange = {this.handleChange}
               value={terms}
             />
           </div>
-          <button type='submit'>save invoice</button>
+          <button type='submit'>Edit invoice</button>
+          <button type='submit' onClick={this.handleDelete}>Delete invoice</button>
         </form>
       </div>
     )
