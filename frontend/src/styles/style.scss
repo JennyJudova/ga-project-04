@@ -6,9 +6,12 @@ $background: transparent;
 $navbarcolor: #7f7fd5;
 $footercolor: #7f7fd5;
 $hovercolor: #91eae4;
+$logocolor: #cc5490;
+$deletebuttoncolor: #7f7fd5;
+$deletebuttonhover: #91eae4;
 $buttoncolor: #91eae4;
 $buttonhover: #7f7fd5;
-$logocolor: #cc5490;
+
 
 @import './form.scss';
 @import './global.scss';
@@ -17,4 +20,5 @@ $logocolor: #cc5490;
 @import './createdinvoiceitem.scss';
 @import './home.scss';
 @import './footer.scss';
-@import './modalform.scss'
+@import './modalform.scss';
+@import './invoiceshow.scss';

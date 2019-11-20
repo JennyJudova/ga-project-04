@@ -72,7 +72,7 @@ class InvoiceShow extends React.Component {
             />
           </div>
           {
-            <div className='invoiceItemWrapperCreated'>
+            <div className='invoiceItemWrapperShow'>
               {invoice_items.map(invoice => (
                 <div key={invoice.id} className='invoiceItemForm'>
                   <div>
@@ -158,8 +158,10 @@ class InvoiceShow extends React.Component {
               value={terms}
             />
           </div>
-          <button type='submit'>Edit invoice</button>
-          <button type='submit' onClick={this.handleDelete}>Delete invoice</button>
+          <div className='inviceshowButtons'>
+            <button type='submit'>Edit invoice</button>
+            <button type='submit' onClick={this.handleDelete}>Delete invoice</button>
+          </div>
         </form>
       </div>
     )

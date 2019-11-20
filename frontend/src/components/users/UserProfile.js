@@ -71,8 +71,8 @@ class UserProfile extends React.Component {
     this.setState({ data, errors })
   }
 
-  handleSubmit() {
-    //e.preventDefault()
+  handleSubmit(e) {
+    e.preventDefault()
     //const profileId = this.state.data.id
     axios.put('/api/profile', this.state.data, 
       { headers: { Authorization: `Bearer ${Auth.getToken()}` } 
@@ -95,7 +95,7 @@ class UserProfile extends React.Component {
     return (
       <div className='profileWrapper'>
         { data &&
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <h1>Hello {data.username}</h1>
           <div className='profileForm'>
             <div>
@@ -104,7 +104,6 @@ class UserProfile extends React.Component {
                 placeholder='Full Name'
                 name='username'
                 onChange={this.handleChange}
-                onBlur={this.handleSubmit}
                 value={data.username}
               />
             </div>
@@ -114,7 +113,6 @@ class UserProfile extends React.Component {
                 placeholder='Company Name'
                 name='company_name'
                 onChange={this.handleChange}
-                onBlur={this.handleSubmit}
                 value={data.company_name}
               />
             </div>
@@ -154,6 +152,7 @@ class UserProfile extends React.Component {
                 value={data.tax_reg}
               />
             </div>
+            <button type='submit'>Update your profile</button>
           </div>
         </form>
         }
@@ -161,19 +160,17 @@ class UserProfile extends React.Component {
         <div className='invoices'>
           <h2>My Invoices</h2>
           <h4>Invoice Number - Due Date - Total</h4>
-          <ul>
+          <div className='invoiceindex'>
             {data.invoices.map(invoice => (
-              <li key={invoice.id} className='invoiceid'>
+              <div key={invoice.id} className='invoiceid'>
                 <Link to={`/invoices/${invoice.id}`}>
-                  {invoice.invoice_number}:
+                  <h4>{invoice.invoice_number}:</h4>
+                  <p>Invoice Due Date - {invoice.due_date}</p>
+                  <p>Invoice Total - {invoice.total}</p>
                 </Link>
-                <ul>
-                  <li>Invoice Due Date - {invoice.due_date}</li>
-                  <li>Invoice Total - {invoice.total}</li>
-                </ul>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
         }
       </div>

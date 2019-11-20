@@ -6,6 +6,10 @@
   align-self: center;
   background: $gradient;
   padding-bottom: 30px;
+
+  button {
+    margin-left: 15px;
+  }
 }
 
 .profileForm {
@@ -21,6 +25,8 @@
   }
 }
 
+// INVOICE INDEX
+
 .invoices {
   display: flex;
   flex-direction: column;
@@ -29,7 +35,28 @@
     text-align: center;
     margin: 5px;
   }
-  ul {
-    list-style-type: none;
+}
+
+.invoiceindex {
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .invoiceid {
+    background-color: white;
+    padding: 20px;
+    margin: 15px;
+    a {
+      text-decoration: none;
+      h4 {
+        color: #7f7fd5;
+        margin: 5px 5px 10px 5x;
+      }
+      p {
+        margin: 5px;
+        color: black;
+      }
+    }
   }
 }

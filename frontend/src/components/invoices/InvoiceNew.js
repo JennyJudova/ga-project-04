@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 
 import InvoiceItemNew from './InvoiceItemNew'
 import Auth from '../../lib/auth'
+
 import NewClientModal from './NewClientModal'
 
 
@@ -29,7 +30,7 @@ class InvoiceNew extends React.Component {
         issue_date: '', //models.DateField(default=date.today)
         due_date: '', //models.DateField(null=True)
         vat_registered: false, //models.BooleanField(default=False)
-        subtotal: '', //MoneyField(max_digits=10, decimal_places=2, null=True, default_currency='GBP')
+        subtotal: 0, //MoneyField(max_digits=10, decimal_places=2, null=True, default_currency='GBP')
         vat: 0, //models.FloatField(null=True, default=0)
         total: 0, //MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
         notes: '', //models.CharField(max_length=500, blank=True)
@@ -66,7 +67,15 @@ class InvoiceNew extends React.Component {
 
   // //DOUBLE SPREADING & adding into an array
   callbackInvoiceItem = (InvoiceItem) => {
-    console.log(InvoiceItem.item_description)
+    // console.log('call back invoice item', InvoiceItem)
+    // const itemTotal = InvoiceItem.total
+    // let invoiceSubTotal = this.state.data.subtotal
+    // console.log('subtotal', this.state.data.subtotal)
+    // const vat = this.state.data.vat
+    // invoiceSubTotal = parseFloat(invoiceSubTotal) + parseFloat(itemTotal)
+    // const invoiceTotal = parseFloat(invoiceSubTotal) + ((parseFloat(invoiceSubTotal) / 100) * parseFloat(vat))
+    // this.setState({ ...this.state.data, subtotal: invoiceSubTotal, total: invoiceTotal })
+
     const currentItems = this.state.data.invoice_items
     const InvoiceItems = currentItems.concat(InvoiceItem)
     this.setState({ data: { ...this.state.data, invoice_items: InvoiceItems } })
@@ -84,7 +93,7 @@ class InvoiceNew extends React.Component {
     axios.post('/api/invoices', this.state.data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(res => console.log(res))
+      .then(() => this.props.history.push('/profile'))
       .catch(err => console.log(err.response.data.errors))
     console.log('submitted')
   }
@@ -93,7 +102,7 @@ class InvoiceNew extends React.Component {
 
   render() {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items } = this.state.data
-    console.log(this.state)
+    console.log('render state', this.state)
     console.log(invoice_items)
     return (
       <div className='invoiceWrapper'>
@@ -113,7 +122,7 @@ class InvoiceNew extends React.Component {
             <label>Issue Date<span>*</span></label>
             <textarea
               placeholder='2019-11-21'
-              name='Issue Date'
+              name='issue_date'
               onChange = {this.handleChange}
               value={issue_date}
             />
