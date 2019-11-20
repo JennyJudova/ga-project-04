@@ -74,7 +74,10 @@ class InvoiceNew extends React.Component {
     // const vat = this.state.data.vat
     // invoiceSubTotal = parseFloat(invoiceSubTotal) + parseFloat(itemTotal)
     // const invoiceTotal = parseFloat(invoiceSubTotal) + ((parseFloat(invoiceSubTotal) / 100) * parseFloat(vat))
-    // this.setState({ ...this.state.data, subtotal: invoiceSubTotal, total: invoiceTotal })
+    
+    // this.setState({ data: { ...this.state.data, subtotal: invoiceSubTotal } })
+    //const data = this.state.data
+    //this.setState({ data, subtotal: invoiceSubTotal } )
 
     const currentItems = this.state.data.invoice_items
     const InvoiceItems = currentItems.concat(InvoiceItem)
