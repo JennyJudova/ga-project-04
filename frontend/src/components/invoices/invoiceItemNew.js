@@ -8,16 +8,10 @@ class InvoiceItemNew extends React.Component {
     super()
 
     this.state = {
-      // {
-      //   "item_description": "work8",
-      //   "quantity_hrs": 40,
-      //   "unit_price_hrs": 50,
-      //   "total": 200
-      // }
       data: {
         item_description: '',//models.CharField(max_length=200)
         quantity_hrs: 0,//models.FloatField(null=True, default=0)
-        unit_price_hrs: 0, //models.FloatField(null=True, default=0)
+        unit_price_hrs: 1, //models.FloatField(null=True, default=0)
         total: 0 //MoneyField(max_digits=10, decimal_places=2, null=True, default_currency='GBP')
       }, 
       errors: {}
@@ -28,7 +22,12 @@ class InvoiceItemNew extends React.Component {
   }
 
   handleChange(e) {
-    const data = { ...this.state.data, [e.target.name]: e.target.value }
+    let data = { ...this.state.data, [e.target.name]: e.target.value }
+    const item_description = data.item_description
+    const quantity_hrs = parseFloat(data.quantity_hrs)
+    const unit_price_hrs = parseFloat(data.unit_price_hrs)
+    const total = quantity_hrs * unit_price_hrs
+    data = { ...this.state.data, item_description, quantity_hrs, unit_price_hrs, total }
     const errors = { ...this.state.errors, [e.target.name]: '' }
     this.setState({ data, errors })
   }
@@ -41,7 +40,6 @@ class InvoiceItemNew extends React.Component {
       .then(res => console.log(res))
       .catch(err => this.setState({ errors: err.response.data.errors }))
     this.sendData()
-    console.log('submitted')
   }
 
   sendData() {
@@ -86,9 +84,10 @@ class InvoiceItemNew extends React.Component {
               <div>
                 <label>Total</label>
                 <textarea
+                  disabled
                   placeholder='0'
                   name='total'
-                  onChange={this.handleChange}
+                  onChange = {this.handleChange}
                   value={total}
                 />
               </div>

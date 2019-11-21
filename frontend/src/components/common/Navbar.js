@@ -3,8 +3,6 @@ import { Link, withRouter } from 'react-router-dom'
 
 import Auth from '../../lib/auth'
 
-//import Auth from '../../lib/auth'
-
 class Navbar extends React.Component {
   constructor() {
     super()
@@ -14,11 +12,6 @@ class Navbar extends React.Component {
     this.handleLogout = this.handleLogout.bind(this)
     this.toggleNavbar = this.toggleNavbar.bind(this)
   }
-
-  // handleLogout() {
-  //   Auth.logout()
-  //   this.props.history.push('/vegetables')
-  // }
 
   toggleNavbar() {
     this.setState({ burgerOpen: !this.state.burgerOpen })

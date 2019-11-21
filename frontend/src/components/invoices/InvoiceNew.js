@@ -44,6 +44,8 @@ class InvoiceNew extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    //this.getTotal = this.getTotal.bind(this)
+    //this.invoiceItemArray = this.invoiceItemArray.bind(this)
   }
 
   // componentDidMount() {
@@ -67,21 +69,21 @@ class InvoiceNew extends React.Component {
 
   // //DOUBLE SPREADING & adding into an array
   callbackInvoiceItem = (InvoiceItem) => {
-    // console.log('call back invoice item', InvoiceItem)
-    // const itemTotal = InvoiceItem.total
-    // let invoiceSubTotal = this.state.data.subtotal
-    // console.log('subtotal', this.state.data.subtotal)
-    // const vat = this.state.data.vat
-    // invoiceSubTotal = parseFloat(invoiceSubTotal) + parseFloat(itemTotal)
-    // const invoiceTotal = parseFloat(invoiceSubTotal) + ((parseFloat(invoiceSubTotal) / 100) * parseFloat(vat))
-    
-    // this.setState({ data: { ...this.state.data, subtotal: invoiceSubTotal } })
-    //const data = this.state.data
-    //this.setState({ data, subtotal: invoiceSubTotal } )
+
+    console.log('get total')
+    console.log(InvoiceItem)
+    const itemTotal = InvoiceItem.total
+    let invoiceSubTotal = this.state.data.subtotal
+    const vat = this.state.data.vat
+    invoiceSubTotal = parseFloat(invoiceSubTotal) + parseFloat(itemTotal)
+    const invoiceTotal = parseFloat(invoiceSubTotal) + ((parseFloat(invoiceSubTotal) / 100) * parseFloat(vat))
+    //const data1 = { ...this.state.data, subtotal: invoiceSubTotal, total: invoiceTotal }
+    //console.log('data1', data1)
 
     const currentItems = this.state.data.invoice_items
     const InvoiceItems = currentItems.concat(InvoiceItem)
-    this.setState({ data: { ...this.state.data, invoice_items: InvoiceItems } })
+    
+    this.setState({ data: { ...this.state.data, invoice_items: InvoiceItems, subtotal: invoiceSubTotal, total: invoiceTotal } })
   }
 
   handleChange(e) {
@@ -97,11 +99,9 @@ class InvoiceNew extends React.Component {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(() => this.props.history.push('/profile'))
-      .catch(err => console.log(err.response.data.errors))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
     console.log('submitted')
   }
-
-  //.catch(err => this.setState({ errors: err.response.data.errors }))
 
   render() {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items } = this.state.data
@@ -174,6 +174,7 @@ class InvoiceNew extends React.Component {
             <div>
               <label>Subtotal</label>
               <textarea
+                disabled
                 placeholder='0'
                 name='subtotal'
                 onChange = {this.handleChange}
@@ -192,6 +193,7 @@ class InvoiceNew extends React.Component {
             <div>
               <label>Total</label>
               <textarea
+                disabled
                 placeholder='0'
                 name='total'
                 onChange = {this.handleChange}
@@ -226,68 +228,3 @@ class InvoiceNew extends React.Component {
 }
 
 export default InvoiceNew
-
-
-{/* <div key={invoice.id} className='invoiceItemForm'>
-<textarea
-  value={invoice.item_description}
-/>
-<div className='num'>
-  <textarea
-    value={invoice.quantity_hrs}
-  />
-  <textarea
-    value={invoice.unit_price_hrs}
-  />
-  <textarea
-    value={invoice.total}
-  />
-</div>
-</div> */}
-
-{/* <div className='createdInvoiceItemWrapper'>
-  {invoice_items.map(invoice => (
-    <div key={invoice.id} className='createdinvoiceItemForm'>
-      <p>{invoice.item_description}</p>
-      <div className='num'>
-        <p>{invoice.quantity_hrs}</p>
-        <p>{invoice.unit_price_hrs}</p>
-        <p>{invoice.total}</p>
-      </div>
-    </div>
-  )
-  )}
-</div> */}
-
-
-{/* <div className='invoiceItemWrapper'>
-{invoice_items.map(invoice => (
-<div key={invoice.id} className='invoiceItemForm'>
-  <div>
-    <textarea
-      value={invoice.item_description}
-    />
-  </div>
-  <div className='numbers'>
-    <div>
-      <textarea
-        value={invoice.quantity_hrs}
-      />
-    </div>
-    <div>
-      <label>unit_price_hrs</label>
-      <textarea
-        value={invoice.unit_price_hrs}
-      />
-    </div>
-    <div>
-      <label>total</label>
-      <textarea
-        value={invoice.total}
-      />
-    </div>
-  </div>
-</div>
-)
-)}
-</div> */}

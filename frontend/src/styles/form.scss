@@ -106,6 +106,7 @@ h1 {
 textarea {
   border: none;
   @include textarea-font;
+  resize: none;
 }
 
 small {
