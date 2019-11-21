@@ -2,10 +2,12 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
+//import Calendar from 'react-calendar'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+import 'react-day-picker/lib/style.css'
 
 import InvoiceItemNew from './InvoiceItemNew'
 import Auth from '../../lib/auth'
-
 import NewClientModal from './NewClientModal'
 
 
@@ -14,17 +16,6 @@ class InvoiceNew extends React.Component {
     super()
 
     this.state = {
-      // "invoice_number": "test",
-      // "issue_date": "2019-11-13",
-      // "due_date": "2019-11-21",
-      // "vat_registered": true,
-      // "subtotal": "10.00",
-      // "vat": 10.0,
-      // "total": "11.00",
-      // "notes": "bla",
-      // "terms": "bla",
-      // "is_paid": true,
-      // "currency": "GBP",
       data: {
         invoice_number: '', //models.CharField(max_length=50, unique=True)
         issue_date: '', //models.DateField(default=date.today)
@@ -44,8 +35,6 @@ class InvoiceNew extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    //this.getTotal = this.getTotal.bind(this)
-    //this.invoiceItemArray = this.invoiceItemArray.bind(this)
   }
 
   // componentDidMount() {
@@ -69,20 +58,13 @@ class InvoiceNew extends React.Component {
 
   // //DOUBLE SPREADING & adding into an array
   callbackInvoiceItem = (InvoiceItem) => {
-
-    console.log('get total')
-    console.log(InvoiceItem)
     const itemTotal = InvoiceItem.total
     let invoiceSubTotal = this.state.data.subtotal
     const vat = this.state.data.vat
     invoiceSubTotal = parseFloat(invoiceSubTotal) + parseFloat(itemTotal)
     const invoiceTotal = parseFloat(invoiceSubTotal) + ((parseFloat(invoiceSubTotal) / 100) * parseFloat(vat))
-    //const data1 = { ...this.state.data, subtotal: invoiceSubTotal, total: invoiceTotal }
-    //console.log('data1', data1)
-
     const currentItems = this.state.data.invoice_items
     const InvoiceItems = currentItems.concat(InvoiceItem)
-    
     this.setState({ data: { ...this.state.data, invoice_items: InvoiceItems, subtotal: invoiceSubTotal, total: invoiceTotal } })
   }
 
@@ -91,7 +73,7 @@ class InvoiceNew extends React.Component {
     const errors = { ...this.state.errors, [e.target.name]: '' }
     this.setState({ data, errors })
   }
-
+  
   handleSubmit(e) {
     console.log('data on submit', this.state.data)
     e.preventDefault()
@@ -106,7 +88,7 @@ class InvoiceNew extends React.Component {
   render() {
     const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items } = this.state.data
     console.log('render state', this.state)
-    console.log(invoice_items)
+    console.log(this.state.data)
     return (
       <div className='invoiceWrapper'>
         <h1>New Invoice</h1>
@@ -123,15 +105,17 @@ class InvoiceNew extends React.Component {
           </div>
           <div className='invoiceDate'>
             <label>Issue Date<span>*</span></label>
-            <textarea
+            <input
               placeholder='2019-11-21'
+              type='date'
               name='issue_date'
               onChange = {this.handleChange}
               value={issue_date}
             />
             <label>Due Date</label>
-            <textarea
+            <input
               placeholder='2019-11-21'
+              type='date'
               name='due_date'
               onChange = {this.handleChange}
               value={due_date}

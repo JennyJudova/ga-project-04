@@ -109,6 +109,12 @@ textarea {
   resize: none;
 }
 
+input {
+  border: none;
+  @include textarea-font;
+  padding: 10px;
+}
+
 small {
   color: rgb(248, 241, 241);
 }
