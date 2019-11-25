@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-
 import { Link } from 'react-router-dom'
+
+import Auth from '../../lib/Auth'
+
 
 class Register extends React.Component {
   constructor() {
@@ -29,9 +31,11 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/register', this.state.data)
-      .then(() => this.props.history.push('/'))
+      .then(res => { 
+        Auth.setToken(res.data.token)
+        this.props.history.push('/login')
+      })
       .catch(err => console.log(err.data))
-    console.log('submitted', this.state.data)
   }
 
   render() {

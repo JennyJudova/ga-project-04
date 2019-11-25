@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-
 import { Link } from 'react-router-dom'
+
 import Auth from '../../lib/Auth'
 
 
@@ -31,7 +31,6 @@ class Login extends React.Component {
     e.preventDefault()
     axios.post('/api/login', this.state.data )
       .then(res => { 
-        console.log(res.data.token)
         Auth.setToken(res.data.token)
         this.props.history.push('/profile')
       })
@@ -51,10 +50,6 @@ class Login extends React.Component {
 
   render() {
     const { email, password } = this.state.data
-    console.log('render state Login', this.state)
-    console.log('render errors', this.state.errors)
-    console.log('login props', this.props)
-    console.log('history', this.props.history)
     console.log(this.state)
     return (
       <div className='invoiceWrapper'>

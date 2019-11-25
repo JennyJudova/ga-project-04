@@ -14,7 +14,8 @@ class InvoiceShow extends React.Component {
     }
 
     this.handleDelete = this.handleDelete.bind(this)
-    
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -26,6 +27,25 @@ class InvoiceShow extends React.Component {
         this.setState({ data: res.data })
       })
       .catch(err => console.log(err))
+  }
+
+  handleChange(e) {
+    const data = { ...this.state.data, [e.target.name]: e.target.value }
+    //const errors = { ...this.state.errors, [e.target.name]: '' }
+    this.setState({ data })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    const invoiceId = this.props.match.params.id
+    axios.put(`/api/invoices/${invoiceId}/`, this.state.data, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(() => {
+        this.props.history.push(`/invoices/${invoiceId}`)
+      })
+      .catch(err => this.setState({ errors: err.response.data.errors }))
+    console.log('submitted edited invoice')
   }
 
   handleDelete(e) {
@@ -45,7 +65,7 @@ class InvoiceShow extends React.Component {
     return (
       <div className='invoiceWrapper'>
         <h1>Invoice {invoice_number}</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className='invoiceNumber'>
             <h4>Invoice Number<span>*</span></h4>
             <textarea
@@ -159,7 +179,7 @@ class InvoiceShow extends React.Component {
             />
           </div>
           <div className='inviceshowButtons'>
-            <button type='submit'>Edit invoice</button>
+            <button type='submit' onClick={this.handleSubmit}>Edit invoice</button>
             <button type='submit' onClick={this.handleDelete}>Delete invoice</button>
           </div>
         </form>
