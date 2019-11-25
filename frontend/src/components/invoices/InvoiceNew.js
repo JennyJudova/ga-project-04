@@ -2,12 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
-//import Calendar from 'react-calendar'
-import DayPickerInput from 'react-day-picker/DayPickerInput'
-import 'react-day-picker/lib/style.css'
 
 import InvoiceItemNew from './InvoiceItemNew'
-import Auth from '../../lib/auth'
+import Auth from '../../lib/Auth'
 import NewClientModal from './NewClientModal'
 
 

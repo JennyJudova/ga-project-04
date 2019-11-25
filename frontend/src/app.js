@@ -1,9 +1,9 @@
-console.log('hello world')
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './styles/style.scss'
 
+import SecureRoute from './components/common/SecureRoute'
 import Navbar from './components/common/Navbar'
 import InvoicesIndex from './components/invoices/InvoicesIndex'
 import UserProfile from './components/users/UserProfile'
@@ -21,9 +21,9 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path = '/invoices/new' component={InvoiceNew} />
-        <Route path = '/invoices/:id' component={InvoiceShow} />
+        <SecureRoute path = '/invoices/:id' component={InvoiceShow} />
         <Route path = '/invoices' component={InvoicesIndex} />
-        <Route path = '/profile' component={UserProfile} />
+        <SecureRoute path = '/profile' component={UserProfile} />
         <Route path = '/register' component={Register} />
         <Route path = '/login' component={Login} />
       </Switch>

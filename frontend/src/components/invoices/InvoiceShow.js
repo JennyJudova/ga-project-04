@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import TextareaAutosize from 'react-autosize-textarea';
 
-import Auth from '../../lib/auth'
+import Auth from '../../lib/Auth'
 
 
 class InvoiceShow extends React.Component {
