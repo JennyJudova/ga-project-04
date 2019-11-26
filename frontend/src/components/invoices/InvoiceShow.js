@@ -60,7 +60,7 @@ class InvoiceShow extends React.Component {
 
   render() {
     if (!this.state.data) return null
-    const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items } = this.state.data
+    const { invoice_number, issue_date, due_date, subtotal, vat, total, notes, terms, invoice_items, client } = this.state.data
     console.log('state', this.state)
     return (
       <div className='invoiceWrapper'>
@@ -74,6 +74,20 @@ class InvoiceShow extends React.Component {
               onChange = {this.handleChange}
               value={invoice_number}
             />
+          </div>
+          <div className='clientNewWrapper'>
+            <div>
+              <label>Client Information</label>
+              <TextareaAutosize className='client'
+                // placeholder={client.full_name, client.company_name, client.address, client.email}
+                placeholder={`
+                  Full Name - ${client.full_name}, 
+                  Company Name - ${client.company_name}, 
+                  Client Address - ${client.address}, 
+                  Client Email - ${client.email}`}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
           <div className='invoiceDate'>
             <label>Issue Date<span>*</span></label>
@@ -189,3 +203,33 @@ class InvoiceShow extends React.Component {
 }
 
 export default InvoiceShow
+
+
+
+{/* <div>
+<label>Company Name</label>
+<textarea
+  placeholder='Parabellum'
+  name='company_name'
+  onChange={this.handleChange}
+  value={company_name}
+/>
+</div>
+<div>
+<label>Address</label>
+<textarea
+  placeholder='Continental Hotel, NYC'
+  name='address'
+  onChange={this.handleChange}
+  value={address}
+/>
+</div>
+<div>
+<label>Email<span>*</span></label>
+<textarea
+  placeholder='jw@BabaYaga.co'
+  name='email'
+  onChange={this.handleChange}
+  value={email}
+/>
+</div> */}
