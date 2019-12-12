@@ -2,6 +2,8 @@
 
 This is the 4th project during the General Assembly Software Engineering Immersive course (Week 11). This was a solo project .
 
+<img src="./assets/pic1.png" alt="home screen" width="780">
+
 ---
 
 ## Invoicer
@@ -56,9 +58,13 @@ The database comprises of 4 models:
 Use the clone button to download the source code. In the terminal enter the following commands:
 
 `<!— To install all the packages listed in the package.json: —>`
+
 `$ yarn`
+
 `<!— Run the app in your localhost: —>`
+
 `$ yarn start`
+
 `<!— Check the console for any issues and if there are check the package.json for any dependancies missing —>`
 
 ---
@@ -74,6 +80,10 @@ Your profile also shows you invoices you created, by clicking on the invoice til
 To create a new invoice you have to click on ‘Create New Invoice’ where you can add a client, and add the jobs that you want to be paid for.
 
 The invoice generates the total you should be paid automatically based on the amount you charge per hour and hours worked. It also adds VAT if you need to charge VAT.
+
+<img src="./assets/pic3.png" alt="home screen" width="780">
+
+<img src="./assets/pic2.png" alt="home screen" width="780">
 
 ---
 
